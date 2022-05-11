@@ -1,0 +1,41 @@
+body {
+  background-color: var(--white);
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+
+  #root {
+    color: var(--dark-desatured-blue);
+    background-color: var(--very-pale-blue);
+    width: 375px;
+    min-height: 800px;
+    margin: 0 auto;
+    .cw {
+      width: 327px;
+      margin: 0 auto;
+    }
+  }
+}
+
+/**
+* ? MOBILE ONLY
+*/
+@media (max-width: 1339px) {
+}
+/**
+* ? DeskTop
+*/
+@media (min-width: 1440px) {
+  body {
+    #root {
+      width: 1440px;
+      margin: 0 auto;
+      .cw {
+        width: 540px;
+        margin: 0 auto;
+      }
+    }
+  }
+  .mobile-only {
+    display: none;
+  }
+}
