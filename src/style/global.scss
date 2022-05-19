@@ -1,11 +1,10 @@
 body {
-  background-color: var(--white);
+  background-color: var(--very-pale-blue);
   font-family: "Manrope", sans-serif;
   font-weight: 600;
 
   #root {
     color: var(--dark-desatured-blue);
-    background-color: var(--very-pale-blue);
     width: 375px;
     min-height: 800px;
     margin: 0 auto;
@@ -20,6 +19,9 @@ body {
 * ? MOBILE ONLY
 */
 @media (max-width: 1339px) {
+  .no-mobile {
+    display: none;
+  }
 }
 /**
 * ? DeskTop

@@ -1,0 +1,206 @@
+$track-w: 279px;
+$track-h: 8px;
+$thumb-d: 40px;
+$track-c: var(--light-grayish-blue);
+$fill-c: var(--soft-cyan);
+
+@mixin track($fill: 0) {
+  box-sizing: border-box;
+  border: none;
+  width: $track-w;
+  height: $track-h;
+  background: $track-c;
+  border-radius: 5px;
+
+  @if $fill == 1 {
+    & {
+      background: linear-gradient($fill-c, $fill-c) 0 / var(--sx) 100% no-repeat $track-c;
+    }
+  }
+}
+
+@mixin fill() {
+  height: $track-h;
+  background: $fill-c;
+}
+
+@mixin thumb() {
+  box-sizing: border-box;
+  border: none;
+  width: $thumb-d;
+  height: $thumb-d;
+  border-radius: 50%;
+  background: var(--strong-cyan) center no-repeat url("../assets/icon-slider.svg");
+  box-shadow: 0px 15px 30px rgba(0, 255, 231, 0.6);
+}
+
+#pricing {
+  .cw {
+    background-color: var(--white);
+    box-shadow: 0px 20px 30px -5px rgba(127, 137, 185, 0.152073);
+    border-radius: 8px;
+    text-align: center;
+    @include pY(34px, 32px);
+    .body {
+      border-bottom: 1px solid var(--light-grayish-blue);
+      .page-view {
+        font-weight: 800;
+        @include text(12px, 16px, 1.71429px);
+        color: var(--grayish-blue);
+      }
+      .range {
+        input[type="range"] {
+          // https://css-tricks.com/sliding-nightmare-understanding-range-input/
+          &,
+          &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+          }
+          --min: 0;
+          --max: 4;
+
+          --range: calc(var(--max) - var(--min));
+          --ratio: calc((var(--range-value) - var(--min)) / var(--range));
+          --sx: calc(0.5 *#{$thumb-d} + var(--ratio) * (100% - #{$thumb-d}));
+
+          margin: 25px 0 24px;
+          padding: 0;
+          width: $track-w;
+          height: $thumb-d;
+          cursor: pointer;
+          background: transparent;
+          font: 1em/1 arial, sans-serif;
+
+          &::-webkit-slider-runnable-track {
+            @include track(1);
+          }
+          &::-moz-range-track {
+            @include track;
+          }
+          &::-ms-track {
+            @include track;
+          }
+
+          &::-moz-range-progress {
+            @include fill;
+          }
+          &::-ms-fill-lower {
+            @include fill;
+          }
+
+          &::-webkit-slider-thumb {
+            margin-top: 0.5 * ($track-h - $thumb-d);
+            @include thumb;
+          }
+          &::-moz-range-thumb {
+            @include thumb;
+          }
+          &::-ms-thumb {
+            margin-top: 0;
+            @include thumb;
+          }
+
+          &::-ms-tooltip {
+            display: none;
+          }
+        }
+      }
+      .price {
+        @include flexCenter;
+        gap: 10px;
+        .text-price {
+          font-weight: 800;
+          @include text(32px, 44px, -0.8px);
+          color: var(--dark-desatured-blue);
+        }
+        .durability {
+          @include text(14px, 19px);
+          color: var(--grayish-blue);
+        }
+      }
+      .switch-price {
+        @include flexCenter;
+        gap: 12px;
+        @include text(12px, 16px);
+        color: var(--grayish-blue);
+        padding: 34px 11px 38px 44px;
+
+        $border-toggle: 4px;
+        .toggle {
+          @include wh(43px, 22px);
+          input[type="checkbox"] {
+            display: none;
+            &:checked + label {
+              background-color: var(--toggle-cyan);
+            }
+            &:checked + label::after {
+              left: calc(100% - $border-toggle);
+              transform: translateX(-100%);
+            }
+          }
+          label {
+            @include wh(43px, 22px);
+            border-radius: 15px;
+            display: block;
+            background-color: var(--light-grayish-blue-2);
+            position: relative;
+            cursor: pointer;
+            transition: 0.5s;
+
+            &::after {
+              content: "";
+              @include wh(14px);
+              background-color: #fff;
+              border-radius: 50%;
+              position: absolute;
+              top: $border-toggle;
+              left: $border-toggle;
+              transition: 0.5s;
+            }
+
+            &:active::after {
+              width: 38px;
+            }
+          }
+        }
+
+        .discount {
+          color: var(--light-red);
+          background-color: var(--light-grayish-red);
+          border-radius: 9.5px;
+          padding: 2px 7px 3px;
+          margin-left: 5.5px;
+          @include text(10px, 14px);
+        }
+      }
+    }
+    .footer {
+      .avantages {
+        @include pY(24px, 32px);
+        p {
+          position: relative;
+          @include text(12px, 16px);
+          color: var(--grayish-blue);
+
+          &::before {
+            content: url("../assets/icon-check.svg");
+            position: relative;
+            left: -16px;
+            top: 0;
+          }
+
+          &:nth-child(2) {
+            @include pY(10px);
+          }
+        }
+      }
+      button {
+        border-radius: 20.5px;
+        border: none;
+        background-color: var(--dark-desatured-blue);
+        color: var(--pale-blue);
+        padding: 12px 46px 13px;
+        @include text(12px, 16px);
+      }
+    }
+  }
+}
