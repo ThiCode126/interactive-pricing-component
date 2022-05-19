@@ -40,7 +40,7 @@ const Pricing = () => {
             />
           </div>
           <div className="price">
-            <span className="text-price">${price}</span>
+            <span className="text-price">${price}.00</span>
             <span className="durability"> / month</span>
           </div>
           <div className="switch-price">
