@@ -5,7 +5,7 @@ const Pricing = () => {
   const [rangeValue, setRangeValue] = useState(2);
   const [numberPages, setNumberPages] = useState("100K");
   const [price, setPrice] = useState(16);
-  const [monthly, setMonthly] = useState(false);
+  const [monthly, setMonthly] = useState(true);
 
   useEffect(() => {
     setNumberPages(detailsData[rangeValue].pages);
@@ -27,6 +27,8 @@ const Pricing = () => {
           <div className="page-view">{numberPages} PageViews</div>
           <div className="range">
             <input
+              id="price-range"
+              aria-label="price range"
               type="range"
               min="0"
               max="4"
